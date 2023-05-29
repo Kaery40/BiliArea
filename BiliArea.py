@@ -40,7 +40,6 @@ def read_cookies_file(file_name):
 
 # b站直播间信息类
 class RoomInfo():
-    ChatArea = 740
     JokeArea = 624
     MovieArea = 33
 
@@ -58,9 +57,6 @@ class RoomInfo():
 
     def isMovieArea(self):
         return "影音馆" == self.area_name
-        
-    def isChatArea(self):
-        return "聊天室" == self.area_name
 
 # bilibili类
 class BiliHelper():
@@ -109,16 +105,10 @@ class BiliHelper():
                 logger.info("[账号%s][%s][房间-%s] 当前在影音馆，无需切换   [关注:%s人-%s]" % (self._index, current_time, self.room_id, self.fc_num, self.watched_show))
         elif info.isJokeArea():
             # 切换到聊天室
-            ok = self.updateArea(info.ChatArea, info)
-            self.fc_num = info.fc_num  
-            self.watched_show = info.watched_show
-            logger.info("[账号%s][%s][房间-%s] 当前在搞笑区，切换到【聊天室】30分钟后切换   [关注:%s人-%s]" % (self._index, current_time, self.room_id, self.fc_num, self.watched_show))
-        elif info.isChatArea():
-            # 切换到影音馆
             ok = self.updateArea(info.MovieArea, info)
             self.fc_num = info.fc_num  
             self.watched_show = info.watched_show
-            logger.info("[账号%s][%s][房间-%s] 当前在聊天室，切换到【影音馆】30分钟后切换   [关注:%s人-%s]" % (self._index, current_time, self.room_id, self.fc_num, self.watched_show))
+            logger.info("[账号%s][%s][房间-%s] 当前在搞笑区，切换到【影音馆】30分钟后切换   [关注:%s人-%s]" % (self._index, current_time, self.room_id, self.fc_num, self.watched_show))
         else:
             # 切换到搞笑区
             ok = self.updateArea(info.JokeArea, info)
