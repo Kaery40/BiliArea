@@ -120,8 +120,8 @@ class BiliHelper():
             self._schedule.enter(30 * 60, 2, self.turnArea, ())
             self._schedule.run()
         else:
-            logger.info("[账号%s][%s][房间-%s] 分区切换失败，等待10秒继续执行" % (self._index, current_time, self.room_id))
-            self._schedule.enter(10, 2, self.turnArea, ())
+            logger.info("[账号%s][%s][房间-%s] 分区切换失败，等待30秒继续执行" % (self._index, current_time, self.room_id))
+            self._schedule.enter(30, 2, self.turnArea, ())
             self._schedule.run()
     
     def updateArea(self, area_id, info: RoomInfo):
