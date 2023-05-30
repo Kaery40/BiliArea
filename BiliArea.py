@@ -139,6 +139,7 @@ class BiliHelper():
             return True
         else:
             logger.error("当前-[%s]直播间请求失败%s" % (self.room_id, resp.text))
+            return False
 
     def getInfo(self) -> RoomInfo:
         # 获取房间信息
